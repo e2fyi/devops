@@ -1,0 +1,11 @@
+{
+  "extends": "../../../tsconfig-base.json",
+  "compilerOptions": {
+    "strictFunctionTypes": false,
+    "outDir": "./lib",
+    "baseUrl": "./",
+    "paths": {}
+  },
+  "include": ["custom_typings/**/*.d.ts", "src/**/*.ts"],
+  "exclude": ["node_modules"]
+}

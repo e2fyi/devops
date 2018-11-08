@@ -1,0 +1,20 @@
+sudo: required
+dist: trusty
+language: node_js
+
+branches:
+  only:
+    - master
+
+cache:
+  directories:
+    - "$HOME/.npm"
+
+install:
+  - npm i -g npm@latest
+  - npm ci
+  - npm run bootstrap
+  - npm run build
+
+script:
+  - npm test
