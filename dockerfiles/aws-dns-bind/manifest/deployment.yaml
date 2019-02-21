@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: aws-dns-bind
+spec:
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: aws-dns-bind
+    spec:
+      nodeSelector:
+        type: services
+      containers:
+        - name: aws-dns-bind
+          image: e2fyi/aws-dns-bind
+          env:
+            - name: ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: aws-dns-bind
+                  key: "password"
+          ports:
+            - containerPort: 53
+              name: dns-udp
+              protocol: UDP
+            - containerPort: 53
+              name: dns-tcp
+              protocol: TCP
